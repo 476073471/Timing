@@ -1,0 +1,21 @@
+﻿<Window x:Class="Miro.Lu.Timing.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Miro.Lu.Timing"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="480" Width="640" MinWidth="640" MinHeight="480" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" MouseMove="Window_MouseMove" Background="Transparent">
+
+    <Grid x:Name="Main_Grid" RenderTransformOrigin="0.493,0.508">
+        <Border BorderThickness="1" BorderBrush="Black"  CornerRadius="5,5,5,5"  >
+            <Border.Background>
+                <ImageBrush ImageSource="/Miro.Lu.Timing;component/Resources/BackGround/Main.png" Stretch="Uniform"/>
+            </Border.Background>
+        </Border>
+        <Image x:Name="btnSetTask" Source="/Miro.Lu.Timing;component/Resources/Button/btnTask.png" Margin="454,55,106,335" MouseEnter="btnSetTask_MouseEnter" MouseLeave="btnSetTask_MouseLeave" />
+        <Image x:Name="btnConfig" Source="/Miro.Lu.Timing;component/Resources/Button/btnConfig.png" Margin="249,25,271,335" MouseEnter="btnConfig_MouseEnter" MouseLeave="btnConfig_MouseLeave" />
+        <Image x:Name="btnExit" Source="/Miro.Lu.Timing;component/Resources/Button/btnExit.png" Margin="30,91,451,169" MouseEnter="btnExit_MouseEnter" MouseLeave="btnExit_MouseLeave" />
+        <Image x:Name="furDesk" Source="/Miro.Lu.Timing;component/Resources/Furniture/furDesk.png" Margin="214,198,198,111"/>
+    </Grid>
+</Window>
