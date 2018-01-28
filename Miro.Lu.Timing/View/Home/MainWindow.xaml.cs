@@ -23,9 +23,22 @@ namespace Miro.Lu.Timing
     /// </summary>
     public partial class MainWindow : Window
     {
+        //是否开灯
+        private bool IsLight = true;
+
         public MainWindow()
         {
             InitializeComponent();
+            Init();
+        }
+
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        public void Init()
+        {
+            //初始化日期
+            lbDate.Content = DateTime.Now.ToString("dd");
         }
 
         /// <summary>
@@ -41,69 +54,77 @@ namespace Miro.Lu.Timing
             }
         }
 
-        #region 按钮事件
+        #region 公共
 
         /// <summary>
-        /// 我的任务按钮（鼠标移入）
+        /// 开关灯
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnSetTask_MouseEnter(object sender, MouseEventArgs e)
+        /// <param name="isTrunOn">是否开灯</param>
+        public void TurnOfflights()
         {
-            btnSetTask.Source = new BitmapImage(new Uri(CommonConst.BtnTask_hover, UriKind.Relative));
-        }
+            IsLight = !IsLight;
+            layerDark.Visibility = IsLight ? Visibility.Hidden : Visibility.Visible;
+            var imgType = IsLight ? "" : "_dark";
+            btnConfig.Source = new BitmapImage(new Uri(CommonConst.GetImgUrl(btnConfig.Name + imgType), UriKind.Relative));
+            btnTask.Source = new BitmapImage(new Uri(CommonConst.GetImgUrl(btnTask.Name + imgType), UriKind.Relative));
+            btnExit.Source = new BitmapImage(new Uri(CommonConst.GetImgUrl(btnExit.Name + imgType), UriKind.Relative));
+            btnSwitch.Source = new BitmapImage(new Uri(CommonConst.GetImgUrl(btnSwitch.Name + imgType), UriKind.Relative));
 
-        /// <summary>
-        /// 我的任务按钮（鼠标离开）
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnSetTask_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btnSetTask.Source = new BitmapImage(new Uri(CommonConst.BtnTask, UriKind.Relative));
-        }
-
-        /// <summary>
-        /// 设置按钮（鼠标移入）
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnConfig_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btnConfig.Source = new BitmapImage(new Uri(CommonConst.BtnConfig_hover, UriKind.Relative));
-        }
-
-        /// <summary>
-        /// 设置按钮（鼠标离开）
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnConfig_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btnConfig.Source = new BitmapImage(new Uri(CommonConst.BtnConfig, UriKind.Relative));
-        }
-
-        /// <summary>
-        /// 退出按钮（鼠标移入）
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnExit_MouseEnter(object sender, MouseEventArgs e)
-        {
-            btnExit.Source = new BitmapImage(new Uri(CommonConst.BtnExit_hover, UriKind.Relative));
-        }
-
-        /// <summary>
-        /// 退出按钮（鼠标离开）
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnExit_MouseLeave(object sender, MouseEventArgs e)
-        {
-            btnExit.Source = new BitmapImage(new Uri(CommonConst.BtnExit, UriKind.Relative));
+            furWindow.Source = new BitmapImage(new Uri(CommonConst.GetImgUrl(furWindow.Name + imgType), UriKind.Relative));
+            furDesk.Source = new BitmapImage(new Uri(CommonConst.GetImgUrl(furDesk.Name + imgType), UriKind.Relative));
+            furLight.Source = new BitmapImage(new Uri(CommonConst.GetImgUrl(furLight.Name + imgType), UriKind.Relative));
         }
 
         #endregion
+
+        #region 按钮事件
+
+        /// <summary>
+        /// 退出按钮（鼠标点击）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnExit_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            DialogPage.SetLbMessage("确定要退出吗？");
+            DialogPage.SetConfirmFun(() => Close());
+            DialogPage.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// 关灯按钮（鼠标点击）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSwtich_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            TurnOfflights();
+        }
+
+        /// <summary>
+        /// 鼠标移入
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnHover_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Image img = sender as Image;
+            img.Source = new BitmapImage(new Uri(CommonConst.GetImgUrl(img.Name + "_hover"), UriKind.Relative));
+        }
+
+        /// <summary>
+        /// 鼠标移出
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnHover_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Image img = sender as Image;
+            img.Source = new BitmapImage(new Uri(CommonConst.GetImgUrl(img.Name + (IsLight ? "" : "_dark")), UriKind.Relative));
+        }
+
+        #endregion
+
 
     }
 }

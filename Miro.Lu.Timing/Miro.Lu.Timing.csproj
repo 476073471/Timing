@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\Component\DialogPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Home\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -64,6 +68,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\CommonConst.cs" />
+    <Compile Include="View\Component\DialogPage.xaml.cs">
+      <DependentUpon>DialogPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Home\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -91,15 +98,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Font\HYLeMiaoTiW.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Button\btnConfig.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Button\btnConfig_hover.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Button\btnTask.png" />
@@ -119,6 +121,36 @@
   <ItemGroup>
     <Resource Include="Resources\Furniture\furDesk.png" />
     <Resource Include="Resources\Furniture\furDesk_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Dialog\diaButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Dialog\diaButton_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Dialog\diaBase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="diaButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Furniture\furWindow.png" />
+    <Resource Include="Resources\Furniture\furWindow_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Button\btnConfig.png" />
+    <Resource Include="Resources\Button\btnConfig_dark.png" />
+    <Resource Include="Resources\Button\btnConfig_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Furniture\furLight.png" />
+    <Resource Include="Resources\Furniture\furLight_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Button\btnSwitch.png" />
+    <Resource Include="Resources\Button\btnSwitch_dark.png" />
+    <Resource Include="Resources\Button\btnSwitch_hover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

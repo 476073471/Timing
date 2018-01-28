@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="Miro.Lu.Timing.View.Component.DialogPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Miro.Lu.Timing.View.Component"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Width="640" Height="480">
+    <Grid>
+        <Canvas Background="#FF5D5D5D" Opacity="0.5"/>
+        <Image HorizontalAlignment="Left" Height="158" Margin="186,172,0,0" VerticalAlignment="Top" Width="270" Source="/Miro.Lu.Timing;component/Resources/Dialog/diaBase.png"/>
+        <TextBlock x:Name="lbMessage" HorizontalAlignment="Left" Margin="196,198,0,0" VerticalAlignment="Top" Width="247" Height="60" FontSize="22" TextWrapping="Wrap" Text="确定要退出吗？" Foreground="Black" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" TextAlignment="Center"/>
+        <Image x:Name="btnConfirm" Source="/Miro.Lu.Timing;component/Resources/Dialog/diaButton.png" Margin="223,249,336,188" MouseUp="btnConfirm_MouseUp" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" />
+        <Image x:Name="btnCancel" Source="/Miro.Lu.Timing;component/diaButton.png" Margin="329,249,230,188" MouseUp="btnCancel_MouseUp" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" />
+        <Label Content="是滴" HorizontalAlignment="Left" Margin="239,254,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False"/>
+        <Label Content="放弃" HorizontalAlignment="Left" Margin="345,254,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False"/>
+    </Grid>
+</UserControl>
