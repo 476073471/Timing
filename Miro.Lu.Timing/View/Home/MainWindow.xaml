@@ -1,4 +1,4 @@
-﻿<Window
+﻿<Window xmlns:Childs="clr-namespace:Miro.Lu.Timing.View.Childs" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,15 +6,15 @@
         xmlns:local="clr-namespace:Miro.Lu.Timing"
         xmlns:Component="clr-namespace:Miro.Lu.Timing.View.Component" x:Class="Miro.Lu.Timing.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="640" MinWidth="640" MinHeight="480" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" MouseMove="Window_MouseMove" Background="Transparent">
+        Title="MainWindow" Height="480" Width="640" MinWidth="640" MinHeight="480" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="Transparent"  MouseMove="Window_MouseMove">
 
-    <Grid x:Name="Main_Grid" RenderTransformOrigin="0.493,0.508">
+    <Grid x:Name="Main_Grid">
         <Border BorderThickness="1" BorderBrush="Black"  CornerRadius="5,5,5,5"  >
             <Border.Background>
                 <ImageBrush ImageSource="/Miro.Lu.Timing;component/Resources/BackGround/Main.png" Stretch="Uniform"/>
             </Border.Background>
         </Border>
-        <Image x:Name="btnTask" Source="/Miro.Lu.Timing;component/Resources/Button/btnTask.png" Margin="454,55,106,335" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave"/>
+        <Image x:Name="btnTask" Source="/Miro.Lu.Timing;component/Resources/Button/btnTask.png" Margin="454,55,106,335" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" MouseUp="btnTask_MouseUp"/>
         <Image x:Name="btnExit" Source="/Miro.Lu.Timing;component/Resources/Button/btnExit.png" Margin="30,91,451,169" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" MouseUp="btnExit_MouseUp" />
         <Image x:Name="btnConfig" Source="/Miro.Lu.Timing;component/Resources/Button/btnConfig.png" Margin="0,323,446,19" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" />
         <Image x:Name="btnSwitch" Source="/Miro.Lu.Timing;component/Resources/Button/btnSwitch.png" Margin="189,153,421,300" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave"  MouseUp="btnSwtich_MouseUp" />
@@ -22,8 +22,8 @@
         <Image x:Name="furWindow" Source="/Miro.Lu.Timing;component/Resources/Furniture/furWindow.png" Margin="249,56,191,282" />
         <Image x:Name="furLight" Source="/Miro.Lu.Timing;component/Resources/Furniture/furLight.png" Margin="264,0,201,356"/>
         <Label x:Name="lbDate" Margin="473,92,123,351" Content="01" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="24" FontWeight="Bold" Foreground="#FFF71818" IsHitTestVisible="False" />
-        <Canvas x:Name="layerDark" IsHitTestVisible="False" Opacity="0.5" Background="Black" Visibility="Hidden"/>
+        <Border x:Name="layerDark" BorderThickness="1" BorderBrush="Black"  CornerRadius="5,5,5,5" Opacity="0.5" Visibility="Hidden" Background="Black" IsHitTestVisible="False"/>
         <Component:DialogPage x:Name="DialogPage" Visibility="Hidden"/>
-
+        <Childs:MyTask x:Name="ChildMyTask" Visibility="Hidden"/>
     </Grid>
 </Window>

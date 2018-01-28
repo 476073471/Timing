@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Width="640" Height="480">
     <Grid>
-        <Canvas Background="#FF5D5D5D" Opacity="0.5"/>
+        <Border BorderThickness="0" BorderBrush="Black"  CornerRadius="5,5,5,5" Background="#FF5D5D5D" Opacity="0.5"  />
         <Image HorizontalAlignment="Left" Height="158" Margin="186,172,0,0" VerticalAlignment="Top" Width="270" Source="/Miro.Lu.Timing;component/Resources/Dialog/diaBase.png"/>
         <TextBlock x:Name="lbMessage" HorizontalAlignment="Left" Margin="196,198,0,0" VerticalAlignment="Top" Width="247" Height="60" FontSize="22" TextWrapping="Wrap" Text="确定要退出吗？" Foreground="Black" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" TextAlignment="Center"/>
         <Image x:Name="btnConfirm" Source="/Miro.Lu.Timing;component/Resources/Dialog/diaButton.png" Margin="223,249,336,188" MouseUp="btnConfirm_MouseUp" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" />

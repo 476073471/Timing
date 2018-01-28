@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\Childs\MyTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Component\DialogPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -68,6 +72,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\CommonConst.cs" />
+    <Compile Include="View\Childs\MyTask.xaml.cs">
+      <DependentUpon>MyTask.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Component\DialogPage.xaml.cs">
       <DependentUpon>DialogPage.xaml</DependentUpon>
     </Compile>
@@ -151,6 +158,9 @@
     <Resource Include="Resources\Button\btnSwitch.png" />
     <Resource Include="Resources\Button\btnSwitch_dark.png" />
     <Resource Include="Resources\Button\btnSwitch_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BackGround\MyTask.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

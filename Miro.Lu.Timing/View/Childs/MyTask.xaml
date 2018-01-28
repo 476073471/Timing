@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="Miro.Lu.Timing.View.Childs.MyTask"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Miro.Lu.Timing.View.Childs"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Width="640" Height="480">
+    <Grid>
+        <Border BorderThickness="1"  CornerRadius="5,5,5,5" BorderBrush="Black">
+            <Border.Background>
+                <ImageBrush ImageSource="/Miro.Lu.Timing;component/Resources/BackGround/MyTask.png" Stretch="Uniform"/>
+            </Border.Background>
+            <TextBox TextWrapping="Wrap" Text="再不喝水就要死啦！" Margin="152,130,223,327" FontSize="14" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" UndoLimit="10" IsHitTestVisible="True"/>
+        </Border>
+        <Label Content="定时弹窗" HorizontalAlignment="Left" Margin="58,52,0,0" VerticalAlignment="Top" FontSize="22" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW"/>
+        <Label  Content="设置时间：" Margin="63,88,505,367" FontSize="14" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW"/>
+        <RadioButton Content="10分钟" Margin="153,94,407,357" IsChecked="True" GroupName="rbSetTime" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="14" Checked="RadioButton_Checked" Tag="10" />
+        <RadioButton Content="20分钟" Margin="248,94,312,357" GroupName="rbSetTime" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="14" Checked="RadioButton_Checked" Tag="20" />
+        <RadioButton Content="30分钟" Margin="348,94,212,357" GroupName="rbSetTime" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="14" Checked="RadioButton_Checked" Tag="30" />
+        <Label  Content="弹窗内容：" Margin="63,129,505,326" FontSize="14" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW"/>
+        <Image x:Name="btnOpen" Source="/Miro.Lu.Timing;component/Resources/Dialog/diaButton.png" Margin="150,360,409,77" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" MouseUp="btnOpen_MouseUp" />
+        <Image x:Name="btnStop" Source="/Miro.Lu.Timing;component/diaButton.png" Margin="271,360,288,77" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" MouseUp="btnStop_MouseUp" />
+        <Image x:Name="btnExit" Source="/Miro.Lu.Timing;component/Resources/Dialog/diaButton.png" Margin="392,360,167,77" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" MouseUp="btnExit_MouseUp" />
+        <Label Content="开启" HorizontalAlignment="Left" Margin="166,365,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False"/>
+        <Label Content="停止" HorizontalAlignment="Left" Margin="287,365,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False"/>
+        <Label Content="溜了" HorizontalAlignment="Left" Margin="408,365,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False"/>
+
+    </Grid>
+</UserControl>

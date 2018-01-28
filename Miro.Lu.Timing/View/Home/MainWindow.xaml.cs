@@ -102,6 +102,16 @@ namespace Miro.Lu.Timing
         }
 
         /// <summary>
+        /// 我的任务按钮（鼠标点击）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTask_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            ChildMyTask.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
         /// 鼠标移入
         /// </summary>
         /// <param name="sender"></param>
@@ -123,8 +133,7 @@ namespace Miro.Lu.Timing
             img.Source = new BitmapImage(new Uri(CommonConst.GetImgUrl(img.Name + (IsLight ? "" : "_dark")), UriKind.Relative));
         }
 
+
         #endregion
-
-
     }
 }
