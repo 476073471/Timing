@@ -59,6 +59,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Component\DialogConfirm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Component\DialogPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -74,6 +78,9 @@
     <Compile Include="Core\CommonConst.cs" />
     <Compile Include="View\Childs\MyTask.xaml.cs">
       <DependentUpon>MyTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Component\DialogConfirm.xaml.cs">
+      <DependentUpon>DialogConfirm.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Component\DialogPage.xaml.cs">
       <DependentUpon>DialogPage.xaml</DependentUpon>
@@ -161,6 +168,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\BackGround\MyTask.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Component\comInput.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

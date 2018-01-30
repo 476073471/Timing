@@ -19,24 +19,16 @@ namespace Miro.Lu.Timing.View.Component
     /// <summary>
     /// ExitDialog.xaml 的交互逻辑
     /// </summary>
-    public partial class DialogPage : UserControl
+    public partial class DialogConfirm : UserControl
     {
-        /// <summary>
-        /// 确认方法
-        /// </summary>
         public Action ConfirmFun { get; set; }
 
-        /// <summary>
-        /// 取消方法
-        /// </summary>
-        public Action CancelFun { get; set; }
-
-        public DialogPage()
+        public DialogConfirm()
         {
             InitializeComponent();
         }
 
-        public DialogPage(string message = "")
+        public DialogConfirm(string message = "")
         {
             InitializeComponent();
             SetLbMessage(message);
@@ -67,23 +59,6 @@ namespace Miro.Lu.Timing.View.Component
             else
             {
                 ConfirmFun();
-            }
-        }
-
-        /// <summary>
-        /// 取消
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnCancel_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            if (CancelFun == null)
-            {
-                Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                CancelFun();
             }
         }
 

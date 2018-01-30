@@ -23,7 +23,6 @@
         <Image x:Name="furLight" Source="/Miro.Lu.Timing;component/Resources/Furniture/furLight.png" Margin="264,0,201,356"/>
         <Label x:Name="lbDate" Margin="473,92,123,351" Content="01" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="24" FontWeight="Bold" Foreground="#FFF71818" IsHitTestVisible="False" />
         <Border x:Name="layerDark" BorderThickness="1" BorderBrush="Black"  CornerRadius="5,5,5,5" Opacity="0.5" Visibility="Hidden" Background="Black" IsHitTestVisible="False"/>
-        <Component:DialogPage x:Name="DialogPage" Visibility="Hidden"/>
         <Childs:MyTask x:Name="ChildMyTask" Visibility="Hidden"/>
     </Grid>
 </Window>

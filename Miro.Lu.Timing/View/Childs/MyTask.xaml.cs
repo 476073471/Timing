@@ -1,18 +1,11 @@
 ﻿using Miro.Lu.Timing.Core;
+using Miro.Lu.Timing.View.Component;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace Miro.Lu.Timing.View.Childs
@@ -23,15 +16,19 @@ namespace Miro.Lu.Timing.View.Childs
     /// </summary>
     public partial class MyTask : UserControl
     {
+        #region 私有变量
+
         /// <summary>
-        /// 定时弹窗间隔（分钟）
+        /// 定时弹窗间隔类型（分钟）
         /// </summary>
-        private int _setTimeInterval = 10;
+        private int _intervalType = 10;
 
         /// <summary>
         /// 定时器
         /// </summary>
-        private DispatcherTimer _timer = new DispatcherTimer();
+        private readonly DispatcherTimer _timer = new DispatcherTimer();
+
+        #endregion
 
         public MyTask()
         {
@@ -48,8 +45,11 @@ namespace Miro.Lu.Timing.View.Childs
         /// <param name="e"></param>
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            var radio = sender as RadioButton;
-            _setTimeInterval = Convert.ToInt32(radio.Tag ?? 10);
+            if (sender is RadioButton radio)
+            {
+                _intervalType = Convert.ToInt32(radio.Tag ?? 3);
+            }
+            
         }
 
         /// <summary>
@@ -59,8 +59,12 @@ namespace Miro.Lu.Timing.View.Childs
         /// <param name="e"></param>
         private void btnOpen_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            //保存配置数据
             _timer.Interval = new TimeSpan(0, 0, 5);
             _timer.Start();
+            var dialog = new DialogConfirm("开启成功");
+            dialog.ConfirmFun = () => MainGrid.Children.Remove(dialog);
+            MainGrid.Children.Add(dialog);
         }
 
         /// <summary>
@@ -71,6 +75,9 @@ namespace Miro.Lu.Timing.View.Childs
         private void btnStop_MouseUp(object sender, MouseButtonEventArgs e)
         {
             _timer.Stop();
+            var dialog = new DialogConfirm("计时已停止");
+            dialog.ConfirmFun = () => MainGrid.Children.Remove(dialog);
+            MainGrid.Children.Add(dialog);
         }
 
         /// <summary>
@@ -80,7 +87,7 @@ namespace Miro.Lu.Timing.View.Childs
         /// <param name="e"></param>
         private void btnExit_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            this.Visibility = Visibility.Hidden;
+            Visibility = Visibility.Hidden;
         }
 
         /// <summary>
@@ -100,8 +107,7 @@ namespace Miro.Lu.Timing.View.Childs
         /// <param name="e"></param>
         private void btnHover_MouseEnter(object sender, MouseEventArgs e)
         {
-            Image img = sender as Image;
-            img.Source = new BitmapImage(new Uri(CommonConst.DiaButton_hover, UriKind.Relative));
+            if (sender is Image img) img.Source = new BitmapImage(new Uri(CommonConst.DiaButton_hover, UriKind.Relative));
         }
 
         /// <summary>
@@ -111,14 +117,26 @@ namespace Miro.Lu.Timing.View.Childs
         /// <param name="e"></param>
         private void btnHover_MouseLeave(object sender, MouseEventArgs e)
         {
-            Image img = sender as Image;
-            img.Source = new BitmapImage(new Uri(CommonConst.DiaButton, UriKind.Relative));
+            if (sender is Image img) img.Source = new BitmapImage(new Uri(CommonConst.DiaButton, UriKind.Relative));
         }
-
-
 
         #endregion
 
-
+        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            //屏蔽非法按键
+            if (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+            {
+                e.Handled = false;
+            }
+            else if (e.Key >= Key.D0 && e.Key <= Key.D9 && e.KeyboardDevice.Modifiers != ModifierKeys.Shift)
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

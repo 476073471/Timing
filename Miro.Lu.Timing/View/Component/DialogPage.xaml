@@ -9,7 +9,7 @@
     <Grid>
         <Border BorderThickness="0" BorderBrush="Black"  CornerRadius="5,5,5,5" Background="#FF5D5D5D" Opacity="0.5"  />
         <Image HorizontalAlignment="Left" Height="158" Margin="186,172,0,0" VerticalAlignment="Top" Width="270" Source="/Miro.Lu.Timing;component/Resources/Dialog/diaBase.png"/>
-        <TextBlock x:Name="lbMessage" HorizontalAlignment="Left" Margin="196,198,0,0" VerticalAlignment="Top" Width="247" Height="60" FontSize="22" TextWrapping="Wrap" Text="确定要退出吗？" Foreground="Black" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" TextAlignment="Center"/>
+        <TextBlock x:Name="lbMessage" HorizontalAlignment="Left" Margin="190,198,0,0" VerticalAlignment="Top" Width="253" Height="60" FontSize="22" TextWrapping="Wrap" Text="确定要退出吗？" Foreground="Black" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" TextAlignment="Center"/>
         <Image x:Name="btnConfirm" Source="/Miro.Lu.Timing;component/Resources/Dialog/diaButton.png" Margin="223,249,336,188" MouseUp="btnConfirm_MouseUp" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" />
         <Image x:Name="btnCancel" Source="/Miro.Lu.Timing;component/diaButton.png" Margin="329,249,230,188" MouseUp="btnCancel_MouseUp" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" />
         <Label Content="是滴" HorizontalAlignment="Left" Margin="239,254,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False"/>
