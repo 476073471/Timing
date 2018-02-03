@@ -1,23 +1,12 @@
-﻿using Miro.Lu.Timing.Core;
-using Miro.Lu.Timing.View.Component;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Miro.Lu.Timing.Core;
+using Miro.Lu.Timing.View.Component;
 
-namespace Miro.Lu.Timing
+namespace Miro.Lu.Timing.View.Home
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
@@ -68,7 +57,7 @@ namespace Miro.Lu.Timing
         /// 是否可以拖动窗口
         /// </summary>
         /// <returns></returns>
-        public bool isCanMouseWindow()
+        public bool IsCanMouseWindow()
         {
             //如果我的任务窗口打开
             if(ChildMyTask.Visibility == Visibility.Visible)
@@ -147,12 +136,18 @@ namespace Miro.Lu.Timing
         /// <param name="e"></param>
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed && isCanMouseWindow())
+            if (e.LeftButton == MouseButtonState.Pressed && IsCanMouseWindow())
             {
                 this.DragMove();
             }
         }
 
         #endregion
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            //保存任务配置
+            ChildMyTask.SaveTaskConfig();
+        }
     }
 }

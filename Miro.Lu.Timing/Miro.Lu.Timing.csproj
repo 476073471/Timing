@@ -34,6 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -55,6 +60,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Childs\MyTask.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -75,7 +84,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\CommomHelper.cs" />
     <Compile Include="Core\CommonConst.cs" />
+    <Compile Include="Core\CommonExtend.cs" />
+    <Compile Include="Model\ConfigModel.cs" />
     <Compile Include="View\Childs\MyTask.xaml.cs">
       <DependentUpon>MyTask.xaml</DependentUpon>
     </Compile>
@@ -146,9 +158,6 @@
     <Resource Include="Resources\Dialog\diaBase.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="diaButton.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Furniture\furWindow.png" />
     <Resource Include="Resources\Furniture\furWindow_dark.png" />
   </ItemGroup>
@@ -171,6 +180,19 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Component\comInput.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Component\comYes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BackGround\AlertBack_1920_1080.jpg" />
+    <Resource Include="Resources\BackGround\AlertBack_2560_1440.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\BackGround\AlertBack_1366_768.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Newtonsoft.Json.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

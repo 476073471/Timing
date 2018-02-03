@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Miro.Lu.Timing"
-        xmlns:Component="clr-namespace:Miro.Lu.Timing.View.Component" x:Class="Miro.Lu.Timing.MainWindow"
+        xmlns:Component="clr-namespace:Miro.Lu.Timing.View.Component" x:Class="Miro.Lu.Timing.View.Home.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="480" Width="640" MinWidth="640" MinHeight="480" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="Transparent"  MouseMove="Window_MouseMove">
+        Title="MainWindow" Height="480" Width="640" MinWidth="640" MinHeight="480" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="Transparent"  MouseMove="Window_MouseMove" Closed="Window_Closed">
 
     <Grid x:Name="Main_Grid">
         <Border BorderThickness="1" BorderBrush="Black"  CornerRadius="5,5,5,5"  >
