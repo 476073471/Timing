@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using Miro.Lu.Timing.Model;
+using Miro.Lu.Timing.View.Home;
 
 namespace Miro.Lu.Timing.View.Childs
 {
@@ -57,9 +58,9 @@ namespace Miro.Lu.Timing.View.Childs
             TxtCustHeight.Text = config.CustAlertHeight.ToString();
 
             //加载自定义弹窗背景
-            if (!string.IsNullOrEmpty(config.CustAlertBackgroudPath))
+            if (!string.IsNullOrEmpty(config.AlertBackgroudPath))
             {
-                Uri uri = new Uri(config.CustAlertBackgroudPath, UriKind.Absolute);
+                Uri uri = new Uri(config.AlertBackgroudPath, UriKind.Absolute);
                 ImageBrush ib = new ImageBrush {ImageSource = new BitmapImage(uri)};
                 RadioCustImg.Background = ib;
                 RadioCustImg.Visibility = Visibility.Visible;
@@ -83,7 +84,7 @@ namespace Miro.Lu.Timing.View.Childs
 
                 //背景图片
                 if (mainGridChild is RadioButton radioImg && radioImg.GroupName == "rbBackgroudImg" &&
-                    radioImg.Tag.ToInt32() == config.AlertBackgroud)
+                    radioImg.Tag.ToInt32() == config.AlertBackgroudType)
                 {
                     radioImg.IsChecked = true;
                 }
@@ -96,7 +97,7 @@ namespace Miro.Lu.Timing.View.Childs
         /// <param name="groupName">控件所属组</param>
         /// <param name="defaultValue">默认值</param>
         /// <returns></returns>
-        private string GetSelectRadio(string groupName,string defaultValue)
+        private string GetSelectRadioValue(string groupName,string defaultValue)
         {
             foreach (var mainGridChild in MainGrid.Children)
             {
@@ -110,6 +111,107 @@ namespace Miro.Lu.Timing.View.Childs
             return defaultValue;
         }
 
+        /// <summary>
+        /// 获取单选按钮选中的控件
+        /// </summary>
+        /// <param name="groupName">控件所属组</param>
+        /// <returns></returns>
+        private RadioButton GetSelectRadioButton(string groupName)
+        {
+            foreach (var mainGridChild in MainGrid.Children)
+            {
+                //时间间隔
+                if (mainGridChild is RadioButton radio && radio.GroupName == groupName)
+                {
+                    if (radio.IsChecked != null && (bool)radio.IsChecked)
+                        return radio;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 获取当前配置
+        /// </summary>
+        /// <returns></returns>
+        private TaskConfigModel GetNowConfig()
+        {
+            var config = new TaskConfigModel
+            {
+                IntervalTime = TxtIntervalTime.Text.ToInt32(10),
+                AlertContent = TxtAlertContent.Text,
+                CustAlertWidth = TxtCustWidth.Text.ToInt32(SystemParameters.PrimaryScreenWidth.ToInt32()),
+                CustAlertHeight = TxtCustHeight.Text.ToInt32(SystemParameters.PrimaryScreenHeight.ToInt32()),
+                IntervalType = GetSelectRadioValue("rbSetTime", "2").ToInt32(),
+                CustAlertType = GetSelectRadioValue("rbAlertSize", "1").ToInt32(),
+                AlertBackgroudType = 1,
+                AlertBackgroudPath = CommonConst.AlertBack2560_1440
+            };
+            var radio = GetSelectRadioButton("rbBackgroudImg");
+            if (radio != null)
+            {
+                config.AlertBackgroudType = radio.Tag.ToInt32();
+                config.AlertBackgroudPath = ((ImageBrush) radio.Background).ImageSource.ToString();
+            }
+ 
+            return config;
+        }
+
+        /// <summary>
+        /// 设置控件有效性
+        /// <param name="control">控件</param>
+        /// <param name="isValid">是否有效</param>
+        /// </summary>
+        private void SetControlValid<T>(T control, bool isValid) where T : Control
+        {
+            //设为有效
+            if (isValid)
+            {
+                control.IsEnabled = true;
+                control.Opacity = 1;
+            }
+            else
+            {
+                control.IsEnabled = false;
+                control.Opacity = 0.5;
+            }
+        }
+
+        /// <summary>
+        /// 设置图片控件有效性
+        /// <param name="control">控件</param>
+        /// <param name="isValid">是否有效</param>
+        /// </summary>
+        private void SetImgValid<T>(T control, bool isValid) where T : Image
+        {
+            //设为有效
+            if (isValid)
+            {
+                control.IsEnabled = true;
+                control.Opacity = 1;
+            }
+            else
+            {
+                control.IsEnabled = false;
+                control.Opacity = 0.5;
+            }
+        }
+
+        /// <summary>
+        /// 弹出任务框
+        /// <param name="isPreview">是否预览</param>
+        /// </summary>
+        private void AlertTaskWindow(bool isPreview)
+        {
+            var alertWindow = new TaskAlertWindow(GetNowConfig());
+            if (!isPreview)
+            {
+                _timer.Stop();
+                alertWindow.ConfirmFun = () => _timer.Start();
+            }           
+            alertWindow.ShowDialog();
+        }
+
         #endregion
 
         #region 公共方法
@@ -119,18 +221,7 @@ namespace Miro.Lu.Timing.View.Childs
         /// </summary>
         public void SaveTaskConfig()
         {
-            var config = new TaskConfigModel
-            {
-                IntervalTime = TxtIntervalTime.Text.ToInt32(10),
-                AlertContent = TxtAlertContent.Text,
-                CustAlertWidth = TxtCustWidth.Text.ToInt32(SystemParameters.PrimaryScreenWidth.ToInt32()),
-                CustAlertHeight = TxtCustHeight.Text.ToInt32(SystemParameters.PrimaryScreenHeight.ToInt32()),
-                IntervalType = GetSelectRadio("rbSetTime", "2").ToInt32(),
-                CustAlertType = GetSelectRadio("rbAlertSize", "1").ToInt32(),
-                AlertBackgroud = GetSelectRadio("rbBackgroudImg", "1").ToInt32(),
-                CustAlertBackgroudPath = ""
-            };
-            CommonHelper.SaveConfig(config, ConfigEnum.TaskConfig);
+            CommonHelper.SaveConfig(GetNowConfig(), ConfigEnum.TaskConfig);
         }
 
         #endregion
@@ -144,10 +235,18 @@ namespace Miro.Lu.Timing.View.Childs
         /// <param name="e"></param>
         private void btnOpen_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            //TODO 保存配置数据
+            //开始按钮设为无效
+            SetImgValid(BtnOpen, false);
+            SetControlValid(LbOpen, false);
+            //停止按钮设为有效
+            SetImgValid(BtnStop, true);
+            SetControlValid(LbStop, true);
+            //预览按钮设为无效
+            SetImgValid(BtnPreview, false);
+            SetControlValid(LbPreview, false);
 
             //获取弹框间隔类型
-            var intervalType = GetSelectRadio("rbSetTime", "2").ToInt32(2);
+            var intervalType = GetSelectRadioValue("rbSetTime", "2").ToInt32(2);
             var intervalTime = TxtIntervalTime.Text.ToInt32(10);
             _timer.Interval = new TimeSpan(intervalType == 1 ? intervalTime : 0,
                 intervalType == 2 ? intervalTime : 0,
@@ -165,6 +264,16 @@ namespace Miro.Lu.Timing.View.Childs
         /// <param name="e"></param>
         private void btnStop_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            //开始按钮设为有效
+            SetImgValid(BtnOpen, true);
+            SetControlValid(LbOpen, true);
+            //停止按钮设为无效
+            SetImgValid(BtnStop, false);
+            SetControlValid(LbStop, false);
+            //预览按钮设为有效
+            SetImgValid(BtnPreview, true);
+            SetControlValid(LbPreview, true);
+
             _timer.Stop();
             var dialog = new DialogConfirm("计时已停止");
             dialog.ConfirmFun = () => MainGrid.Children.Remove(dialog);
@@ -178,7 +287,7 @@ namespace Miro.Lu.Timing.View.Childs
         /// <param name="e"></param>
         private void btnPreview_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Visibility = Visibility.Hidden;
+            AlertTaskWindow(true);
         }
 
         /// <summary>
@@ -198,7 +307,7 @@ namespace Miro.Lu.Timing.View.Childs
         /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e)
         {
-            MessageBox.Show("1");
+            AlertTaskWindow(false);
         }
 
         /// <summary>
@@ -211,7 +320,7 @@ namespace Miro.Lu.Timing.View.Childs
             if (sender is Image img)
             {
                 TxtHide.Focus();
-                img.Source = new BitmapImage(new Uri(CommonConst.DiaButton_hover, UriKind.Relative));
+                img.Source = new BitmapImage(new Uri(CommonConst.DiaButtonHover, UriKind.Relative));
             }
         }
 

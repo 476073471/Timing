@@ -66,14 +66,14 @@
         <Label Content="1366*768" Margin="318,318,244,137" FontSize="14" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" HorizontalAlignment="Center"/>
         <Label Content="自定义" Margin="448,318,140,137" FontSize="14" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" HorizontalAlignment="Center"/>
 
-        <Image x:Name="btnOpen" Source="/Miro.Lu.Timing;component/Resources/Dialog/diaButton.png" Margin="95,360,464,77" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" MouseUp="btnOpen_MouseUp" />
-        <Image x:Name="btnStop" Source="/Miro.Lu.Timing;component/Resources/Dialog/diaButton.png" Margin="206,360,353,77" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" MouseUp="btnStop_MouseUp" />
-        <Image x:Name="btnPreview" Source="/Miro.Lu.Timing;component/Resources/Dialog/diaButton.png" Margin="322,360,237,77" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" MouseUp="btnPreview_MouseUp" />
-        <Image x:Name="btnExit" Source="/Miro.Lu.Timing;component/Resources/Dialog/diaButton.png" Margin="435,360,124,77" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" MouseUp="btnExit_MouseUp" />
-        <Label Content="开启" HorizontalAlignment="Left" Margin="111,365,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False"/>
-        <Label Content="停止" HorizontalAlignment="Left" Margin="222,365,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False"/>
-        <Label Content="预览" HorizontalAlignment="Left" Margin="338,365,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False"/>
-        <Label Content="溜了" HorizontalAlignment="Left" Margin="451,365,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False"/>
+        <Image x:Name="BtnOpen" Source="/Miro.Lu.Timing;component/Resources/Dialog/diaButton.png" Margin="95,360,464,77" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" MouseUp="btnOpen_MouseUp" />
+        <Image x:Name="BtnStop" Source="/Miro.Lu.Timing;component/Resources/Dialog/diaButton.png" Margin="206,360,353,77" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" MouseUp="btnStop_MouseUp" IsEnabled="False" Opacity="0.5" />
+        <Image x:Name="BtnPreview" Source="/Miro.Lu.Timing;component/Resources/Dialog/diaButton.png" Margin="322,360,237,77" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" MouseUp="btnPreview_MouseUp" />
+        <Image x:Name="BtnExit" Source="/Miro.Lu.Timing;component/Resources/Dialog/diaButton.png" Margin="435,360,124,77" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" MouseUp="btnExit_MouseUp" />
+        <Label x:Name="LbOpen" Content="开启" HorizontalAlignment="Left" Margin="111,365,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False"/>
+        <Label x:Name="LbStop" Content="停止" HorizontalAlignment="Left" Margin="222,365,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False" IsEnabled="False" Opacity="0.5"/>
+        <Label x:Name="LbPreview" Content="预览" HorizontalAlignment="Left" Margin="338,365,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False"/>
+        <Label x:Name="LbExit" Content="溜了" HorizontalAlignment="Left" Margin="451,365,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False"/>
         
         <TextBox x:Name="TxtHide" Width="0" Height="0"></TextBox>
     </Grid>

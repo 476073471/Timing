@@ -32,7 +32,7 @@ namespace Miro.Lu.Timing.Core
             { "furWindow", "component/Resources/Furniture/furWindow.png" },
             { "furWindow_dark", "component/Resources/Furniture/furWindow_dark.png" },
             { "furLight", "component/Resources/Furniture/furLight.png" },
-            { "furLight_dark", "component/Resources/Furniture/furLight_dark.png" }
+            { "furLight_dark", "component/Resources/Furniture/furLight_dark.png" },
         };
 
         /// <summary>
@@ -51,6 +51,8 @@ namespace Miro.Lu.Timing.Core
 
         //弹框图片路径
         public static readonly string DiaButton = BasePath + "component/Resources/Dialog/diaButton.png";
-        public static readonly string DiaButton_hover = BasePath + "component/Resources/Dialog/diaButton_hover.png";
+        public static readonly string DiaButtonHover = BasePath + "component/Resources/Dialog/diaButton_hover.png";
+        //我的任务弹框背景图片
+        public static readonly string AlertBack2560_1440 = BasePath + "component/Resources/BackGround/AlertBack_2560_1440.jpg";
     }
 }

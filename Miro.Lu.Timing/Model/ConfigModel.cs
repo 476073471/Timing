@@ -42,13 +42,13 @@ namespace Miro.Lu.Timing.Model
         public int CustAlertHeight { get; set; }
 
         /// <summary>
-        /// 弹窗背景（1,2,3,4）
+        /// 弹窗背景类型（1,2,3,4）
         /// </summary>
-        public int AlertBackgroud { get; set; }
+        public int AlertBackgroudType { get; set; }
 
         /// <summary>
         /// 自定义弹窗图片路径
         /// </summary>
-        public string CustAlertBackgroudPath { get; set; }
+        public string AlertBackgroudPath { get; set; }
     }
 }

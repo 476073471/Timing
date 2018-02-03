@@ -69,7 +69,7 @@ namespace Miro.Lu.Timing.View.Component
         /// <param name="e"></param>
         private void btnHover_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (sender is Image img) img.Source = new BitmapImage(new Uri(CommonConst.DiaButton_hover, UriKind.Relative));
+            if (sender is Image img) img.Source = new BitmapImage(new Uri(CommonConst.DiaButtonHover, UriKind.Relative));
         }
 
         /// <summary>
