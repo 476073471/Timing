@@ -25,6 +25,13 @@ namespace Miro.Lu.Timing.Core
             { "btnSwitch", "component/Resources/Button/btnSwitch.png" },
             { "btnSwitch_hover", "component/Resources/Button/btnSwitch_hover.png" },
             { "btnSwitch_dark", "component/Resources/Button/btnSwitch_dark.png" },
+            { "btnMin", "component/Resources/Button/btnMin.png" },
+            { "btnMin_hover", "component/Resources/Button/btnMin_hover.png" },
+            { "btnMin_dark", "component/Resources/Button/btnMin_dark.png" },
+
+            //我的任务按钮图片
+            { "btnDelete", "component/Resources/Button/btnDelete.png" },
+            { "btnDelete_hover", "component/Resources/Button/btnDelete_hover.png" },
 
             //家具图片
             { "furDesk", "component/Resources/Furniture/furDesk.png" },

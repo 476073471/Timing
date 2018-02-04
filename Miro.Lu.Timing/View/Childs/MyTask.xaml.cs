@@ -28,6 +28,11 @@ namespace Miro.Lu.Timing.View.Childs
         /// </summary>
         private readonly DispatcherTimer _timer = new DispatcherTimer();
 
+        /// <summary>
+        /// 自定义背景图片
+        /// </summary>
+        private string CustBackgroudPath { get; set; }
+
         #endregion
 
         public MyTask()
@@ -57,13 +62,23 @@ namespace Miro.Lu.Timing.View.Childs
             TxtCustWidth.Text = config.CustAlertWidth.ToString();
             TxtCustHeight.Text = config.CustAlertHeight.ToString();
 
-            //加载自定义弹窗背景
-            if (!string.IsNullOrEmpty(config.AlertBackgroudPath))
+            if (!string.IsNullOrEmpty(config.ContentColor))
             {
-                Uri uri = new Uri(config.AlertBackgroudPath, UriKind.Absolute);
+                var fontColor = ColorConverter.ConvertFromString(config.ContentColor);
+                TxtAlertContent.Foreground = new SolidColorBrush((Color?) fontColor ?? Colors.Black);
+            }
+
+
+            //加载自定义弹窗背景
+            if (!string.IsNullOrEmpty(config.CustAlertBackgroudPath))
+            {
+                CustBackgroudPath = config.CustAlertBackgroudPath;
+                Uri uri = new Uri(config.CustAlertBackgroudPath, UriKind.Absolute);
                 ImageBrush ib = new ImageBrush {ImageSource = new BitmapImage(uri)};
                 RadioCustImg.Background = ib;
                 RadioCustImg.Visibility = Visibility.Visible;
+                BtnDeleteImg.Visibility = Visibility.Visible;
+                BtnUploadImg.Visibility = Visibility.Hidden;
             }
 
             foreach (var mainGridChild in MainGrid.Children)
@@ -73,6 +88,13 @@ namespace Miro.Lu.Timing.View.Childs
                     radioTime.Tag.ToInt32() == config.IntervalType)
                 {
                     radioTime.IsChecked = true;
+                }
+
+                //内容颜色
+                if (mainGridChild is RadioButton radioColor && radioColor.GroupName == "rbContentColor" &&
+                    radioColor.Background.ToString() == config.ContentColor)
+                {
+                    radioColor.IsChecked = true;
                 }
 
                 //弹框大小
@@ -145,15 +167,24 @@ namespace Miro.Lu.Timing.View.Childs
                 IntervalType = GetSelectRadioValue("rbSetTime", "2").ToInt32(),
                 CustAlertType = GetSelectRadioValue("rbAlertSize", "1").ToInt32(),
                 AlertBackgroudType = 1,
-                AlertBackgroudPath = CommonConst.AlertBack2560_1440
+                AlertBackgroudPath = ((ImageBrush)RadioFirstImg.Background).ImageSource.ToString(),
+                CustAlertBackgroudPath = CustBackgroudPath
             };
-            var radio = GetSelectRadioButton("rbBackgroudImg");
-            if (radio != null)
+            //获取内容颜色选中项
+            var colorRadio = GetSelectRadioButton("rbContentColor");
+            if (colorRadio != null)
             {
-                config.AlertBackgroudType = radio.Tag.ToInt32();
-                config.AlertBackgroudPath = ((ImageBrush) radio.Background).ImageSource.ToString();
+                config.ContentColor = colorRadio.Background.ToString();
             }
- 
+
+            //获取弹框背景选中项
+            var imgRadio = GetSelectRadioButton("rbBackgroudImg");
+            if (imgRadio?.Background != null)
+            {
+                config.AlertBackgroudType = imgRadio.Tag.ToInt32();
+                config.AlertBackgroudPath = ((ImageBrush) imgRadio.Background).ImageSource.ToString();
+            }
+
             return config;
         }
 
@@ -398,6 +429,99 @@ namespace Miro.Lu.Timing.View.Childs
             if (sender is RadioButton radio && GridCustSize!=null)
             {
                 GridCustSize.Visibility = radio.Tag.ToInt32() == 1 ? Visibility.Hidden : Visibility.Visible;
+            }
+        }
+
+        /// <summary>
+        /// 调色选择单选框事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RbContentColor_Checked(object sender, RoutedEventArgs e)
+        {
+            if (sender is RadioButton radio && TxtAlertContent != null)
+            {
+                TxtAlertContent.Foreground = radio.Background ?? new SolidColorBrush(Colors.Black);
+            }
+        }
+
+        /// <summary>
+        /// 选择自定义图片按钮事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UploadImage_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Image btn)
+            {
+                var openFileDialog = new Microsoft.Win32.OpenFileDialog()
+                {
+                    Filter = "(*.png,*.jpg)|*.png;*.jpg"
+                };
+                var result = openFileDialog.ShowDialog();
+                if (result == true)
+                {
+                    CustBackgroudPath = openFileDialog.FileName;
+                    Uri uri = new Uri(openFileDialog.FileName, UriKind.Absolute);
+                    ImageBrush ib = new ImageBrush { ImageSource = new BitmapImage(uri) };
+                    RadioCustImg.Background = ib;
+                    RadioCustImg.Visibility = Visibility.Visible;
+                    BtnDeleteImg.Visibility = Visibility.Visible;
+                    btn.Visibility = Visibility.Hidden;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 删除自定义图片按钮确认事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeleteImage_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            var dialog = new DialogPage("确定删除吗？");
+            dialog.ConfirmFun = () =>
+            {
+                CustBackgroudPath = string.Empty;
+                RadioCustImg.Background = null;
+                RadioCustImg.Visibility = Visibility.Hidden;
+                BtnDeleteImg.Visibility = Visibility.Hidden;
+                BtnUploadImg.Visibility = Visibility.Visible;
+                //删除时如果选择则默认选择第一个
+                if (RadioCustImg.IsChecked == true)
+                {
+                    RadioFirstImg.IsChecked = true;
+                }
+                
+                MainGrid.Children.Remove(dialog);
+            };
+            dialog.CancelFun = () => MainGrid.Children.Remove(dialog);
+            MainGrid.Children.Add(dialog);
+        }
+
+        /// <summary>
+        /// 删除自定义图片按钮移入事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnDeleteImg_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is Image image)
+            {
+                image.Source = new BitmapImage(new Uri(CommonConst.GetImgUrl(image.Uid+"_hover"), UriKind.Relative));
+            }
+        }
+
+        /// <summary>
+        /// 删除自定义图片按钮移出事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnDeleteImg_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender is Image image)
+            {
+                image.Source = new BitmapImage(new Uri(CommonConst.GetImgUrl(image.Uid), UriKind.Relative));
             }
         }
 

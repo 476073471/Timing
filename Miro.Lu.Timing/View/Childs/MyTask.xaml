@@ -23,10 +23,19 @@
         <RadioButton Content="分" Style="{StaticResource CircleRadioButton}" Margin="327,92,273,368" IsChecked="True" GroupName="rbSetTime" Tag="2" Width="40" Height="20" TabIndex="3"/>
         <RadioButton Content="秒" Style="{StaticResource CircleRadioButton}" Margin="383,92,217,368" GroupName="rbSetTime" Tag="3" Width="40" Height="20" TabIndex="4"/>
         <Label Content="弹窗内容：" Margin="63,134,505,321" FontSize="14" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW"/>
+        
         <Border BorderThickness="1" CornerRadius="5,5,5,5" BorderBrush="#CCCCCC" Margin="150,129,200,316" Height="35">
             <TextBox x:Name="TxtAlertContent" TextWrapping="Wrap" Text="再不喝水就要死啦！" Margin="-1" FontSize="14" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" IsHitTestVisible="True" BorderThickness="0" SelectionBrush="#FF1569FD" Padding="10,10,10,0" BorderBrush="{x:Null}" MaxLength="15" Background="Transparent" TabIndex="5" />
         </Border>
-        
+        <RadioButton Style="{StaticResource BoxRadioButton}" IsChecked="True" Margin="451,129,174,336" GroupName="rbContentColor" Background="Black" Width="15" Height="15" Checked="RbContentColor_Checked"/>
+        <RadioButton Style="{StaticResource BoxRadioButton}" Margin="471,129,154,336" GroupName="rbContentColor" Background="Red" Width="15" Height="15" Checked="RbContentColor_Checked"/>
+        <RadioButton Style="{StaticResource BoxRadioButton}" Margin="491,129,134,336" GroupName="rbContentColor" Background="Blue" Width="15" Height="15" Checked="RbContentColor_Checked"/>
+        <RadioButton Style="{StaticResource BoxRadioButton}" Margin="511,129,114,336" GroupName="rbContentColor" Background="SkyBlue" Width="15" Height="15" Checked="RbContentColor_Checked"/>
+        <RadioButton Style="{StaticResource BoxRadioButton}" Margin="451,149,174,316" GroupName="rbContentColor" Background="Orange" Width="15" Height="15" Checked="RbContentColor_Checked"/>
+        <RadioButton Style="{StaticResource BoxRadioButton}" Margin="471,149,154,316" GroupName="rbContentColor" Background="Brown" Width="15" Height="15" Checked="RbContentColor_Checked"/>
+        <RadioButton Style="{StaticResource BoxRadioButton}" Margin="491,149,134,316" GroupName="rbContentColor" Background="Violet" Width="15" Height="15" Checked="RbContentColor_Checked"/>
+        <RadioButton Style="{StaticResource BoxRadioButton}" Margin="511,149,114,316" GroupName="rbContentColor" Background="Pink" Width="15" Height="15" Checked="RbContentColor_Checked"/>
+
         <Label Content="弹窗大小：" Margin="63,180,505,275" FontSize="14" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW"/>
         <RadioButton Content="全屏" Style="{StaticResource CircleRadioButton}" Margin="150,184,430,276" IsChecked="True" GroupName="rbAlertSize" Tag="1" Width="60" Height="20" TabIndex="6" Checked="RbAlertSize_Checked"/>
         <RadioButton Content="自定义" Style="{StaticResource CircleRadioButton}" Margin="215,183,356,277" GroupName="rbAlertSize" Tag="2" Height="20" TabIndex="7" Checked="RbAlertSize_Checked"/>
@@ -39,9 +48,9 @@
                 <TextBox x:Name="TxtCustHeight" TextWrapping="Wrap" Text="1024" Margin="-1" FontSize="14" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" IsHitTestVisible="True" BorderThickness="0" SelectionBrush="#FF1569FD" Padding="10,10,10,0" BorderBrush="{x:Null}" MaxLength="4" Background="Transparent" InputMethod.IsInputMethodEnabled="False" PreviewKeyDown="TextBox_PreviewKeyDown" LostFocus="TextBox_LostFocus" TabIndex="9"/>
             </Border>
         </Grid>
-        
+
         <Label Content="弹窗背景（建议选择适合自己电脑分辨率的图片）" Margin="63,222,212,233" FontSize="14" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW"/>
-        <RadioButton Style="{StaticResource BoxRadioButton}" IsChecked="True" Margin="74,262,466,162" Width="100" Height="56" GroupName="rbBackgroudImg" Tag="1">
+        <RadioButton x:Name="RadioFirstImg" Style="{StaticResource BoxRadioButton}" IsChecked="True" Margin="74,262,466,162" Width="100" Height="56" GroupName="rbBackgroudImg" Tag="1">
             <RadioButton.Background>
                 <ImageBrush ImageSource="/Miro.Lu.Timing;component/Resources/BackGround/AlertBack_2560_1440.jpg"/>
             </RadioButton.Background>
@@ -56,11 +65,13 @@
                 <ImageBrush ImageSource="/Miro.Lu.Timing;component/Resources/BackGround/AlertBack_1366_768.jpg"/>
             </RadioButton.Background>
         </RadioButton>
-        <RadioButton x:Name="RadioCustImg" Style="{StaticResource BoxRadioButton}" Margin="424,262,116,162" Width="100" Height="56" GroupName="rbBackgroudImg" Tag="4">
+        <RadioButton x:Name="RadioCustImg" Style="{StaticResource BoxRadioButton}" Margin="424,262,116,162" Width="100" Height="56" GroupName="rbBackgroudImg" Tag="4" Visibility="Hidden">
             <RadioButton.Background>
                 <ImageBrush ImageSource="/Miro.Lu.Timing;component/Resources/BackGround/Main.png"/>
             </RadioButton.Background>
         </RadioButton>
+        <Image x:Name="BtnUploadImg" Source="/Miro.Lu.Timing;component/Resources/Button/btnUploadImg.png" Margin="426,262,114,162" Width="100" Height="56" Cursor="Hand" MouseUp="UploadImage_MouseUp" ></Image>
+        <Image x:Name="BtnDeleteImg" Source="/Miro.Lu.Timing;component/Resources/Button/btnDelete.png" Margin="525,301,97,162" Cursor="Hand" MouseUp="DeleteImage_MouseUp" Visibility="Hidden" MouseEnter="BtnDeleteImg_MouseEnter" MouseLeave="BtnDeleteImg_MouseLeave" Uid="btnDelete"/>
         <Label Content="1920*1080" Margin="197,318,357,137" FontSize="14" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" HorizontalAlignment="Center"/>
         <Label Content="2560*1440" Margin="81,318,473,137" FontSize="14" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" HorizontalAlignment="Center"/>
         <Label Content="1366*768" Margin="318,318,244,137" FontSize="14" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" HorizontalAlignment="Center"/>
@@ -74,7 +85,7 @@
         <Label x:Name="LbStop" Content="停止" HorizontalAlignment="Left" Margin="222,365,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False" IsEnabled="False" Opacity="0.5"/>
         <Label x:Name="LbPreview" Content="预览" HorizontalAlignment="Left" Margin="338,365,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False"/>
         <Label x:Name="LbExit" Content="溜了" HorizontalAlignment="Left" Margin="451,365,0,0" VerticalAlignment="Top" Height="33" Width="56" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" FontSize="18" Background="{x:Null}" IsHitTestVisible="False"/>
-        
+
         <TextBox x:Name="TxtHide" Width="0" Height="0"></TextBox>
     </Grid>
 </UserControl>

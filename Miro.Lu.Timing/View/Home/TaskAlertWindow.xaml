@@ -5,14 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Miro.Lu.Timing.View.Home"
         mc:Ignorable="d"
-        Title="TaskAlertWindow" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="Transparent" Width="{DynamicResource {x:Static SystemParameters.PrimaryScreenWidthKey}}" Height="{DynamicResource {x:Static SystemParameters.PrimaryScreenHeightKey}}" Topmost="True">
+        Title="我的任务" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="Transparent" Width="{DynamicResource {x:Static SystemParameters.PrimaryScreenWidthKey}}" Height="{DynamicResource {x:Static SystemParameters.PrimaryScreenHeightKey}}" Topmost="True" Closed="Window_Closed" KeyDown="Window_KeyDown">
     <Grid x:Name="MainGrid">
         <Image x:Name="ImgBackground" Source="/Miro.Lu.Timing;component/Resources/BackGround/White.png" Stretch="Fill" />
-        <Border x:Name="ContentBorder" BorderThickness="3" BorderBrush="#7F000000"  CornerRadius="5,5,5,5" Margin="300,350,300,350" Background="#B2CCCCCC" Visibility="Hidden"  >
+        <Border x:Name="ContentBorder" BorderThickness="3"  CornerRadius="5,5,5,5" Margin="300,350,300,350" Visibility="Hidden"  >
+            <Border.BorderBrush>
+                <SolidColorBrush Color="Black" Opacity="0.7"/>
+            </Border.BorderBrush>
+            <Border.Background>
+                <SolidColorBrush Color="#FFCCCCCC" Opacity="0.7"/>
+            </Border.Background>
             <Viewbox>
                 <TextBox  x:Name="TxtAlertContent" Text="这里是内容哟！这里是内容哟！！" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" TextWrapping="Wrap" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="7" Background="{x:Null}" BorderBrush="{x:Null}" IsHitTestVisible="False"/>
             </Viewbox>
         </Border>
-        
+        <Border x:Name="ConfrimBorder" BorderThickness="3"  CornerRadius="5,5,5,5" Margin="300,350,300,350" Height="50" MouseUp="ConfrimBorder_MouseUp" MouseEnter="ConfrimBorder_MouseEnter" MouseLeave="ConfrimBorder_MouseLeave"  >
+            <Border.Background>
+                <SolidColorBrush Color="#FFCCCCCC" Opacity="0.5"/>
+            </Border.Background>
+            <Border.BorderBrush>
+                <SolidColorBrush Color="Black" Opacity="0.7"/>
+            </Border.BorderBrush>
+            <Viewbox>
+                <TextBox Text="知道啦！" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" TextWrapping="Wrap" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="7" Background="{x:Null}" BorderBrush="{x:Null}" IsHitTestVisible="False"/>
+            </Viewbox>
+        </Border>
     </Grid>
 </Window>

@@ -70,8 +70,89 @@ namespace Miro.Lu.Timing.View.Home
                 ContentBorder.Visibility = Visibility.Visible;
                 ContentBorder.Margin = new Thickness(Width * 0.2, Height * 0.4, Width * 0.2, Height * 0.4);
                 TxtAlertContent.Text = TaskConfig.AlertContent;
+                //设置内容颜色
+                if (!string.IsNullOrEmpty(TaskConfig.ContentColor))
+                {
+                    var fontColor = ColorConverter.ConvertFromString(TaskConfig.ContentColor);
+                    TxtAlertContent.Foreground = new SolidColorBrush((Color?)fontColor ?? Colors.Black);
+                }
+
+                double a = Height - Height * 0.8;
+                //设置按钮位置
+                ConfrimBorder.Margin = new Thickness(Width * 0.4, Height * 0.4 + a, Width * 0.4, Height * 0.4 - a);
             }
-            
+            else
+            {
+                //设置按钮位置
+                ConfrimBorder.Margin = new Thickness(Width * 0.4, Height * 0.4, Width * 0.4, Height * 0.4);
+            }
+
+
         }
+
+        #region 事件
+
+        /// <summary>
+        /// 确定按钮点击
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ConfrimBorder_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Close();
+        }
+
+        /// <summary>
+        /// 确定按钮移入
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ConfrimBorder_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is Border border)
+            {
+                border.Background.Opacity = 0.7;
+            }
+        }
+
+        /// <summary>
+        /// 确定按钮移除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ConfrimBorder_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender is Border border)
+            {
+                border.Background.Opacity = 0.5;
+            }
+        }
+
+        /// <summary>
+        /// 窗口关闭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            ConfirmFun?.Invoke();
+        }
+
+        /// <summary>
+        /// 组合键关闭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.C) && Keyboard.IsKeyDown(Key.L) && Keyboard.IsKeyDown(Key.S))
+            {
+                Close();
+            }
+        }
+
+        #endregion
+
+
     }
 }

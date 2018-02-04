@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Miro.Lu.Timing.Model
 {
@@ -27,6 +28,11 @@ namespace Miro.Lu.Timing.Model
         public string AlertContent { get; set; }
 
         /// <summary>
+        /// 内容字体颜色
+        /// </summary>
+        public string ContentColor { get; set; }
+
+        /// <summary>
         /// 弹框大小类型（1-全屏；2-自定义）
         /// </summary>
         public int CustAlertType { get; set; }
@@ -47,8 +53,13 @@ namespace Miro.Lu.Timing.Model
         public int AlertBackgroudType { get; set; }
 
         /// <summary>
-        /// 自定义弹窗图片路径
+        /// 弹窗图片路径
         /// </summary>
         public string AlertBackgroudPath { get; set; }
+
+        /// <summary>
+        /// 自定义弹窗图片路径
+        /// </summary>
+        public string CustAlertBackgroudPath { get; set; }
     }
 }
