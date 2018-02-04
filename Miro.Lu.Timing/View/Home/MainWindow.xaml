@@ -16,7 +16,7 @@
         </Border>
         <Image x:Name="BtnTask" Source="/Miro.Lu.Timing;component/Resources/Button/btnTask.png" Margin="454,55,106,335" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" MouseUp="btnTask_MouseUp" Tag="ImageBtn" Uid="btnTask"/>
         <Image x:Name="BtnExit" Source="/Miro.Lu.Timing;component/Resources/Button/btnExit.png" Margin="30,91,451,169" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" MouseUp="btnExit_MouseUp" Tag="ImageBtn" Uid="btnExit" />
-        <Image x:Name="BtnConfig" Source="/Miro.Lu.Timing;component/Resources/Button/btnConfig.png" Margin="0,323,446,19" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" Tag="ImageBtn" Uid="btnConfig" />
+        <Image x:Name="BtnConfig" Source="/Miro.Lu.Timing;component/Resources/Button/btnConfig.png" Margin="0,323,446,19" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave"  MouseUp="btnConfig_MouseUp" Tag="ImageBtn" Uid="btnConfig" />
         <Image x:Name="BtnSwitch" Source="/Miro.Lu.Timing;component/Resources/Button/btnSwitch.png" Margin="189,153,421,300" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave"  MouseUp="btnSwtich_MouseUp" Tag="ImageBtn" Uid="btnSwitch" />
         <Image x:Name="BtnMin" Source="/Miro.Lu.Timing;component/Resources/Button/btnMin.png" Margin="575,411,-19,11" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave" Tag="ImageBtn" Uid="btnMin" RenderTransformOrigin="0.5,0.5" MouseUp="btnMin_MouseUp" >
             <Image.RenderTransform>
@@ -28,6 +28,7 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
+        <Image x:Name="BtnInfo" Source="/Miro.Lu.Timing;component/Resources/Button/btnInfo.png" Margin="155,0,391,385" MouseEnter="btnHover_MouseEnter" MouseLeave="btnHover_MouseLeave"  MouseUp="btnInfo_MouseUp" Tag="ImageBtn" Uid="btnInfo" />
         <Image x:Name="FurDesk" Source="/Miro.Lu.Timing;component/Resources/Furniture/furDesk.png" Margin="234,198,178,111" Tag="ImageFur" Uid="furDesk"/>
         <Image x:Name="FurWindow" Source="/Miro.Lu.Timing;component/Resources/Furniture/furWindow.png" Margin="249,56,191,282" Tag="ImageFur" Uid="furWindow" />
         <Image x:Name="FurLight" Source="/Miro.Lu.Timing;component/Resources/Furniture/furLight.png" Margin="264,0,201,356" Tag="ImageFur" Uid="furLight"/>

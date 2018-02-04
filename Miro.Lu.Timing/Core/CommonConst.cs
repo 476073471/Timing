@@ -8,6 +8,8 @@ namespace Miro.Lu.Timing.Core
 {
     public class CommonConst
     {
+        public static readonly string Version = "1.0.0.0";
+
         public static readonly string BasePath = "/Miro.Lu.Timing;";
 
         //按钮图片路径
@@ -28,6 +30,9 @@ namespace Miro.Lu.Timing.Core
             { "btnMin", "component/Resources/Button/btnMin.png" },
             { "btnMin_hover", "component/Resources/Button/btnMin_hover.png" },
             { "btnMin_dark", "component/Resources/Button/btnMin_dark.png" },
+            { "btnInfo", "component/Resources/Button/btnInfo.png" },
+            { "btnInfo_hover", "component/Resources/Button/btnInfo_hover.png" },
+            { "btnInfo_dark", "component/Resources/Button/btnInfo_dark.png" },
 
             //我的任务按钮图片
             { "btnDelete", "component/Resources/Button/btnDelete.png" },

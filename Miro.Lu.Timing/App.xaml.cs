@@ -15,6 +15,8 @@ namespace Miro.Lu.Timing
     /// </summary>
     public partial class App : Application
     {
+        System.Threading.Mutex _mutex;
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -35,5 +37,25 @@ namespace Miro.Lu.Timing
             MainWindow m = new MainWindow();
             m.Show();
         }
+
+
+
+        public App()
+        {
+            Startup += App_Startup;
+        }
+
+        void App_Startup(object sender, StartupEventArgs e)
+        {
+            _mutex = new System.Threading.Mutex(true, "Miro.Lu.Timing", out var ret);
+
+            if (!ret)
+            {
+                MessageBox.Show("你开那么多想干嘛！");
+                Environment.Exit(0);
+            }
+
+        }
+
     }
 }

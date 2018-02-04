@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 
 namespace Miro.Lu.Timing.Core
@@ -16,6 +17,11 @@ namespace Miro.Lu.Timing.Core
     public class CommonHelper
     {
         /// <summary>
+        /// 配置存放路径（我的文档中）
+        /// </summary>
+        private static readonly string PersonalPaht = Environment.GetFolderPath(Environment.SpecialFolder.Personal)+ "/MiroTreasureChest/Config";
+
+        /// <summary>
         /// 保存配置
         /// </summary>
         public static bool SaveConfig<T>(T config, ConfigEnum configName)
@@ -24,11 +30,11 @@ namespace Miro.Lu.Timing.Core
             {
                 //将配置转换为JOSN字符串
                 string json = JsonConvert.SerializeObject(config);
-                if (!Directory.Exists("Config"))
+                if (!Directory.Exists(PersonalPaht))
                 {
-                    Directory.CreateDirectory("Config");
+                    Directory.CreateDirectory(PersonalPaht);
                 }
-                File.WriteAllText($"Config/{configName}.cfg", json, Encoding.UTF8);
+                File.WriteAllText($"{PersonalPaht}/{configName}.cfg", json, Encoding.UTF8);
                 return true;
             }
             catch
@@ -44,7 +50,7 @@ namespace Miro.Lu.Timing.Core
         {
             try
             {
-                var path = $"Config/{configName}.cfg";
+                var path = $"{PersonalPaht}/{configName}.cfg";
                 if (File.Exists(path))
                 {
                     string jsonConfig = File.ReadAllText(path);
@@ -57,8 +63,6 @@ namespace Miro.Lu.Timing.Core
                 return default(T);
             }
         }
-
-
     }
 
     /// <summary>

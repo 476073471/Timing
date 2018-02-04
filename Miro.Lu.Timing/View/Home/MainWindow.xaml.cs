@@ -164,6 +164,37 @@ namespace Miro.Lu.Timing.View.Home
         }
 
         /// <summary>
+        /// 系统配置按钮（鼠标点击）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnConfig_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            var dialog = new DialogConfirm("前方施工中……");
+            dialog.ConfirmFun = () => MainGrid.Children.Remove(dialog);
+            MainGrid.Children.Add(dialog);
+        }
+
+        /// <summary>
+        /// 系统信息按钮（鼠标点击）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnInfo_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            var dialog = new DialogConfirm($"    版本号：{CommonConst.Version}\r    开发人：Miro.Lu")
+            {
+                lbMessage =
+                {
+                    TextAlignment = TextAlignment.Left,
+                    FontSize = 20
+                }
+            };
+            dialog.ConfirmFun = () => MainGrid.Children.Remove(dialog);
+            MainGrid.Children.Add(dialog);
+        }
+
+        /// <summary>
         /// 最小化到托盘按钮（按钮点击）
         /// </summary>
         /// <param name="sender"></param>
