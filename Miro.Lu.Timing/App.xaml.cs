@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using Miro.Lu.Timing.View.Home;
 
 namespace Miro.Lu.Timing
@@ -16,6 +17,12 @@ namespace Miro.Lu.Timing
     public partial class App : Application
     {
         System.Threading.Mutex _mutex;
+
+        public App()
+        {
+            Startup += App_Startup;
+            
+        }
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -34,15 +41,11 @@ namespace Miro.Lu.Timing
                     return null;
                 }
             };
+            //异常绑定
+            Current.DispatcherUnhandledException += App_OnDispatcherUnhandledException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             MainWindow m = new MainWindow();
             m.Show();
-        }
-
-
-
-        public App()
-        {
-            Startup += App_Startup;
         }
 
         void App_Startup(object sender, StartupEventArgs e)
@@ -54,7 +57,45 @@ namespace Miro.Lu.Timing
                 MessageBox.Show("你开那么多想干嘛！");
                 Environment.Exit(0);
             }
+        }
 
+
+        /// <summary>
+        /// UI线程抛出全局异常事件处理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            try
+            {
+                MessageBox.Show("我的天CPU要炸啦！" + e.Exception.Message);
+                e.Handled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("我的天CPU要炸啦！" + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// 非UI线程抛出全局异常事件处理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            try
+            {
+                if (e.ExceptionObject is Exception exception)
+                {
+                    MessageBox.Show("我的天CPU要炸啦！" + exception.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("我的天CPU要炸啦！" + ex.Message);
+            }
         }
 
     }
