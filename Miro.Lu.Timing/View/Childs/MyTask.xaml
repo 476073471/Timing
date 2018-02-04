@@ -25,7 +25,7 @@
         <Label Content="弹窗内容：" Margin="63,134,505,321" FontSize="14" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW"/>
         
         <Border BorderThickness="1" CornerRadius="5,5,5,5" BorderBrush="#CCCCCC" Margin="150,129,200,316" Height="35">
-            <TextBox x:Name="TxtAlertContent" TextWrapping="Wrap" Text="再不喝水就要死啦！" Margin="-1" FontSize="14" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" IsHitTestVisible="True" BorderThickness="0" SelectionBrush="#FF1569FD" Padding="10,10,10,0" BorderBrush="{x:Null}" MaxLength="15" Background="Transparent" TabIndex="5" />
+            <TextBox x:Name="TxtAlertContent" TextWrapping="Wrap" Text="再不喝水就要凉啦！" Margin="-1" FontSize="14" FontFamily="/Miro.Lu.Timing;component/Resources/Font/#HYLeMiaoTiW" IsHitTestVisible="True" BorderThickness="0" SelectionBrush="#FF1569FD" Padding="10,10,10,0" BorderBrush="{x:Null}" MaxLength="15" Background="Transparent" TabIndex="5" />
         </Border>
         <RadioButton Style="{StaticResource BoxRadioButton}" IsChecked="True" Margin="451,129,174,336" GroupName="rbContentColor" Background="Black" Width="15" Height="15" Checked="RbContentColor_Checked"/>
         <RadioButton Style="{StaticResource BoxRadioButton}" Margin="471,129,154,336" GroupName="rbContentColor" Background="Red" Width="15" Height="15" Checked="RbContentColor_Checked"/>
